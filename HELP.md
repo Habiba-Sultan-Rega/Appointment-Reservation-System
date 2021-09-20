@@ -3,7 +3,7 @@ The following was discovered as part of building this project:
 
 * The original package name 'com.example.Appointment-Reservation-System' is invalid and this project uses 'com.example.AppointmentReservationSystem' instead.
 
-# Getting Started 
+# Getting Started  
 
 ### Reference Documentation
 For further reference, please consider the following sections:
