@@ -17,6 +17,6 @@ Project is created with:
   * email: Assynchronous JMS
 
 # Backend you need to install intelliJ
-  * $ cd ../AppointmentReservationSystem 
+  * $ cd ../Appointment-Reservation-System 
   * $ Open and run with intelliJ
 
