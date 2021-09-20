@@ -6,20 +6,20 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Role {
+public class UserRole {
     @Id
     @GeneratedValue
     private Long id;
 
-    private String roleName;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    public Role(String roleName) {
-        this.roleName = roleName;
-    }
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 }
