@@ -2,7 +2,6 @@ package com.ea.group6.appointmentsystem.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -16,7 +15,9 @@ public class Appointment {
     @Id
     @GeneratedValue
     private Long id;
+
     private LocalDate date;
+
     private LocalTime time;
 
     private String location;
