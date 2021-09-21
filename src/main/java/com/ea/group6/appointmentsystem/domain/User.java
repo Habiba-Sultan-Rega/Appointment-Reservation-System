@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,7 +12,6 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-@SecondaryTable(name = "Credential")
 public class User {
     @Id
     @GeneratedValue
@@ -20,12 +20,12 @@ public class User {
     private String lastName;
     private String emailAddress;
     private String phone;
+
+    @Enumerated(EnumType.STRING)
+    @Value("FEMALE")
     private Gender gender;
 
-    @Column(table = "Credential")
     private String username;
-
-    @Column(table = "Credential")
     private String password;
 
     public User(String firstName, String lastName, String emailAddress, String phone, Gender gender, String username, String password) {

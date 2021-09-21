@@ -2,6 +2,7 @@ package com.ea.group6.appointmentsystem.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -16,7 +17,13 @@ public class Reservation {
     private Long id;
     private LocalDate approvalDate;
     private LocalTime approvalTime;
+
+    @Enumerated(EnumType.STRING)
+    @Value("PENDING")
     private Status status;
+
+    @Enumerated(EnumType.STRING)
+    @Value("ORDINARY")
     private ReservationType reservationType;
 
     @Column(name = "reason")
