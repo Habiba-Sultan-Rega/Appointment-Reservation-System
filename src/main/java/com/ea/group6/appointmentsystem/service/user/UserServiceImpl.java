@@ -5,10 +5,12 @@ import com.ea.group6.appointmentsystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService{
     UserRepository userRepository;
 
@@ -40,5 +42,20 @@ public class UserServiceImpl implements UserService{
     @Override
     public void save(User user) {
         userRepository.save(user);
+    }
+
+    @Override
+    public User findUserByUsernameAndPassword(String username, String password) {
+        return userRepository.findUserByUsernameAndPassword(username, password);
+    }
+
+    @Override
+    public User findUserByUsername(String username){
+        return userRepository.findUserByUsername(username);
+    }
+
+    @Override
+    public List<String> findUserRolesByUserId(Long id) {
+        return userRepository.findUserRolesByUserId(id);
     }
 }

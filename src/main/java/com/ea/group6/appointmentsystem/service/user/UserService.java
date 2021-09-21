@@ -1,6 +1,5 @@
 package com.ea.group6.appointmentsystem.service.user;
 
-import com.ea.group6.appointmentsystem.domain.Category;
 import com.ea.group6.appointmentsystem.domain.User;
 
 import java.util.List;
@@ -16,4 +15,10 @@ public interface UserService {
     User update(User user);
 
     void save(User user);
+
+    User findUserByUsernameAndPassword(String username, String password);
+
+    User findUserByUsername(String username);
+
+    List<String> findUserRolesByUserId(Long id);
 }
