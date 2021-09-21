@@ -16,4 +16,6 @@ public interface ReservationService {
     Reservation update(Reservation reservation);
 
     void save(Reservation reservation);
+
+    Reservation approveReservation(Reservation reservation, String status);
 }
