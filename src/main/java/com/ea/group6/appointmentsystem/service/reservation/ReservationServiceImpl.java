@@ -100,10 +100,4 @@ public class ReservationServiceImpl implements ReservationService{
         return reservationRepository.findAllReservationsGivenAppointmentId(id);
     }
 
-  @Override
-   public void sendReservationReminder() {
-      System.out.println("Finished putting the email in the queue");
-    }
-
-
 }
