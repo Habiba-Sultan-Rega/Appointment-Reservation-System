@@ -12,7 +12,5 @@ import java.util.Optional;
 
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
-    @Query(value = "select * from Reservation where appointment_id = :appointment_id", nativeQuery = true)
-    public List<Reservation> findAllReservationsGivenAppointmentId(@Param("appointment_id") Long id);
 
 }
