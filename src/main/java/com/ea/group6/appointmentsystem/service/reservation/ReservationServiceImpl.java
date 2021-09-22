@@ -15,10 +15,7 @@ import java.util.*;
 @Transactional
 public class ReservationServiceImpl implements ReservationService{
 
-         ReservationRepository reservationRepository;
-
-        @Autowired
-        private EmailService mailService;
+        private ReservationRepository reservationRepository;
 
         @Autowired
         public ReservationServiceImpl(ReservationRepository reservationRepository) {
@@ -74,8 +71,8 @@ public class ReservationServiceImpl implements ReservationService{
                                 + reservation.getAppointment().getDate()+
                                 " /n "+"Best Regards, /n"
                                 +reservation.getProvider();
-                      if(reservation.getAppointment().getDate().plusDays(1).equals(LocalDate.now()))
-                      mailService.sendEmailFromService("hrega@miu.edu","Reservation has been ACCEPTED",message);
+                      //if(reservation.getAppointment().getDate().plusDays(1).equals(LocalDate.now()))
+                      //mailService.sendEmailFromService("hrega@miu.edu","Reservation has been ACCEPTED",message);
 
                     }
                 }else if("DECLINED".equals(status)){
@@ -88,7 +85,7 @@ public class ReservationServiceImpl implements ReservationService{
                             + " /n "+"Best Regards, /n"
                             + reservation.getProvider().getRoleName();
 
-                    mailService.sendEmailFromService("hrega@miu.edu","Reservation has been ACCEPTED",message);
+                    //mailService.sendEmailFromService("hrega@miu.edu","Reservation has been ACCEPTED",message);
                 }
             }
         return reservationUpdated;
