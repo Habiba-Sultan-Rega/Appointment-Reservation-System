@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +27,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<Map<String,Object>> authenticate(@RequestBody Map<String,String> request)
+    public ResponseEntity<Map<String,Object>> authenticate(@Valid @RequestBody Map<String,String> request)
     {
         if(!request.containsKey("username")||!request.containsKey("password")){
             return ResponseEntity.badRequest().body(Map.of("reason","Incorrect User Name and Password"));

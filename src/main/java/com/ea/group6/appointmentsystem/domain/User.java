@@ -7,6 +7,9 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -16,8 +19,11 @@ public class User {
     @Id
     @GeneratedValue
     private Long id;
+    @NotNull
     private String firstName;
     private String lastName;
+    @NotBlank
+    @Email
     private String emailAddress;
     private String phone;
 
@@ -25,7 +31,9 @@ public class User {
     @Value("FEMALE")
     private Gender gender;
 
+    @NotNull
     private String username;
+    @NotNull
     private String password;
 
     public User(String firstName, String lastName, String emailAddress, String phone, Gender gender, String username, String password) {

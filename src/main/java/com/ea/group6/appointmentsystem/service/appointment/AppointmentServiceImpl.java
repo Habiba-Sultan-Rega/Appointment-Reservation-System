@@ -14,13 +14,14 @@ import java.util.Optional;
 @Service
 @Transactional
 public class AppointmentServiceImpl implements AppointmentService{
+
     AppointmentRepository appointmentRepository;
-    ProviderRepository providerRepository;
+
 
     @Autowired
-    public AppointmentServiceImpl(AppointmentRepository appointmentRepository, ProviderRepository providerRepository){
+    public AppointmentServiceImpl(AppointmentRepository appointmentRepository){
         this.appointmentRepository = appointmentRepository;
-        this.providerRepository = providerRepository;
+
     }
 
     @Override

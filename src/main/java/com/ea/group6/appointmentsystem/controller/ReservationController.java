@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -34,12 +35,12 @@ public class ReservationController {
     }
 
     @PostMapping
-    public void save(@RequestBody ReservationDTO reservationDTO){
+    public void save(@Valid @RequestBody ReservationDTO reservationDTO){
         reservationService.save(makeReservation(reservationDTO));
     }
 
     @PutMapping("/{id}")
-    public Reservation update(@PathVariable(name = "id") Long id, @RequestBody Reservation reservation) {
+    public Reservation update(@PathVariable(name = "id") Long id, @Valid @RequestBody Reservation reservation) {
         reservationService.findById(id).orElseThrow(RuntimeException::new); //It should throw a custom exception; we need to write custom exception
         return reservationService.update(reservation);
     }

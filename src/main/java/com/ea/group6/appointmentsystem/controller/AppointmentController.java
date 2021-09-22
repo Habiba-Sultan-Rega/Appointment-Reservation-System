@@ -7,6 +7,7 @@ import com.ea.group6.appointmentsystem.service.appointment.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/appointments")
 public class AppointmentController {
+
     AppointmentService appointmentService;
     
     @Autowired
@@ -32,13 +34,14 @@ public class AppointmentController {
         return appointmentService.findById(id);
     }
 
+    //ADDED VALIDATION
     @PostMapping
-    public void save(@RequestBody AppointmentDTO appointmentDTO){
+    public void save(@Valid @RequestBody AppointmentDTO appointmentDTO){
         appointmentService.save(makeAppointment(appointmentDTO));
     }
 
     @PutMapping("/{id}")
-    public Appointment update(@PathVariable(name = "id") Long id, @RequestBody AppointmentDTO appointmentDTO) {
+    public Appointment update(@PathVariable(name = "id") Long id, @Valid @RequestBody AppointmentDTO appointmentDTO) {
         appointmentService.findById(id).orElseThrow(RuntimeException::new); //It should throw a custom exception; we need to write custom exception
         return appointmentService.update(makeAppointment(appointmentDTO));
     }
