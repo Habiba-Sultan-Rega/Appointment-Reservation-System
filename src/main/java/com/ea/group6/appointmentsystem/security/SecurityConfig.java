@@ -50,6 +50,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .disable()
                 .authorizeRequests()
                 .mvcMatchers("/authenticate").permitAll()
+                .mvcMatchers("/v2/api-docs",
+                        "/configuration/ui",
+                        "/swagger-resources/**",
+                        "/configuration/security",
+                        "/swagger-ui.html",
+                        "/webjars/**").permitAll()
                 .mvcMatchers("/appointments/**").hasAnyAuthority("Provider", "Admin")
                 .mvcMatchers(HttpMethod.PATCH,"/reservations/**").hasAnyAuthority("Provider", "Admin")
                 .mvcMatchers(HttpMethod.GET,"/reservations/**").hasAnyAuthority("Client", "Admin")

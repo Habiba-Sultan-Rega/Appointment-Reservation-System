@@ -4,6 +4,8 @@ import com.ea.group6.appointmentsystem.domain.Appointment;
 import com.ea.group6.appointmentsystem.domain.Provider;
 import com.ea.group6.appointmentsystem.dto.AppointmentDTO;
 import com.ea.group6.appointmentsystem.service.appointment.AppointmentService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +36,7 @@ public class AppointmentController {
         return appointmentService.findById(id);
     }
 
-    //ADDED VALIDATION
+
     @PostMapping
     public void save(@Valid @RequestBody AppointmentDTO appointmentDTO){
         appointmentService.save(makeAppointment(appointmentDTO));
