@@ -15,7 +15,7 @@ import java.util.*;
 @Transactional
 public class ReservationServiceImpl implements ReservationService{
 
-        ReservationRepository reservationRepository;
+         ReservationRepository reservationRepository;
 
         @Autowired
         private EmailService mailService;
@@ -100,8 +100,4 @@ public class ReservationServiceImpl implements ReservationService{
         return reservationRepository.findAllReservationsGivenAppointmentId(id);
     }
 
-    @Override
-    public void sendReservationReminder() {
-        System.out.println("Finished putting the email in the queue");
-    }
 }
