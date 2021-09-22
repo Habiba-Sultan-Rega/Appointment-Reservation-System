@@ -19,5 +19,7 @@ public interface ReservationService {
 
     Reservation approveReservation(Reservation reservation, String status);
 
+    List<Reservation> findAllReservationsGivenAppointmentId(Long id);
+
     void sendReservationReminder();
 }
