@@ -21,4 +21,6 @@ public interface ReservationService {
 
     List<Reservation> findAllReservationsGivenAppointmentId(Long id);
 
+    void sendReservationReminder();
+
 }
