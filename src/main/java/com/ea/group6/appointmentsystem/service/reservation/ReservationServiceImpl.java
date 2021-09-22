@@ -95,6 +95,11 @@ public class ReservationServiceImpl implements ReservationService{
 
     }
 
+    @Override
+    public List<Reservation> findAllReservationsGivenAppointmentId(Long id) {
+        return reservationRepository.findAllReservationsGivenAppointmentId(id);
+    }
+
   @Override
    public void sendReservationReminder() {
       System.out.println("Finished putting the email in the queue");
