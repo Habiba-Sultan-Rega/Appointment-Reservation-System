@@ -18,4 +18,5 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     @Query("SELECT distinct f.reservations FROM Appointment f JOIN  f.reservations a " +
             "WHERE a.status ='ACCEPTED' and f.date=:date ")
     Optional<List<Reservation>> getReservationsForReminder(@Param("date") LocalDateTime date);
+    
 }
