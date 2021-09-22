@@ -15,6 +15,7 @@ public class Reservation {
     @Id
     @GeneratedValue
     private Long id;
+
     private LocalDate approvalDate;
     private LocalTime approvalTime;
 
