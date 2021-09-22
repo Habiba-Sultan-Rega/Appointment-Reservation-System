@@ -18,4 +18,6 @@ public interface ReservationService {
     void save(Reservation reservation);
 
     Reservation approveReservation(Reservation reservation, String status);
+
+    void sendReservationReminder();
 }
