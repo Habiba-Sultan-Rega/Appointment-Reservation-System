@@ -2,25 +2,28 @@ package com.ea.group6.appointmentsystem.controller;
 
 import com.ea.group6.appointmentsystem.domain.Reservation;
 import com.ea.group6.appointmentsystem.domain.Status;
+import com.ea.group6.appointmentsystem.domain.User;
 import com.ea.group6.appointmentsystem.dto.ReservationDTO;
 import com.ea.group6.appointmentsystem.service.reservation.ReservationService;
+import com.ea.group6.appointmentsystem.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/reservations")
 public class ReservationController {
-    ReservationService reservationService;
+    private ReservationService reservationService;
+    private UserService userService;
 
     @Autowired
-    public ReservationController(ReservationService reservationService) {
+    public ReservationController(ReservationService reservationService, UserService userService) {
         this.reservationService = reservationService;
+        this.userService = userService;
     }
 
     @GetMapping
@@ -38,22 +41,27 @@ public class ReservationController {
         reservationService.save(makeReservation(reservationDTO));
     }
 
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable(name="id") Long id, @RequestBody Reservation reservation) {
+        reservationService.findById(id).orElseThrow(RuntimeException::new); //It should throw a custom exception; we need to write custom exception
+        reservationService.delete(reservation);
+    }
+
     @PutMapping("/{id}")
     public Reservation update(@PathVariable(name = "id") Long id, @RequestBody Reservation reservation) {
         reservationService.findById(id).orElseThrow(RuntimeException::new); //It should throw a custom exception; we need to write custom exception
         return reservationService.update(reservation);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable(name="id") Long id, @RequestBody Reservation reservation) {
-        reservationService.findById(id).orElseThrow(RuntimeException::new); //It should throw a custom exception; we need to write custom exception
-        reservationService.delete(reservation);
-    }
-    @PatchMapping("/{status}")
-    public ResponseEntity<?> approveReservation(@RequestBody Reservation reservation, @PathVariable("id") String status) {
-        Reservation reservation1 = reservationService.approveReservation(reservation, status);
-        if(reservation1 == null)
-            return (ResponseEntity<?>) ResponseEntity.badRequest();
+    @PatchMapping("/{id}/{status}")
+    public ResponseEntity<?> approveReservation(@PathVariable("id") Long id, @PathVariable("status") String status) {
+        Object principal = SecurityContextHolder. getContext(). getAuthentication(). getPrincipal();
+        String username = principal.toString();
+        User user = userService.findUserByUsername(username);
+
+        Reservation reservation = reservationService.approveReservation(user, id, status);
+        if(reservation == null)
+            return ResponseEntity.badRequest().body("CAUTION:- You cannot approve as \"ACCEPTED\" more than once!");
         else
             return ResponseEntity.ok("Reservation approved!");
     }
@@ -63,8 +71,7 @@ public class ReservationController {
             reservation.setClient(reservationDTO.getClient());
             reservation.setAppointment(reservationDTO.getAppointment());
             reservation.setAppointmentReason(reservationDTO.getAppointmentReason());
-            reservation.setApprovalDate(LocalDate.now());
-            reservation.setApprovalTime(LocalTime.now());
+            reservation.setReservationType(reservationDTO.getReservationType());
             reservation.setStatus(Status.PENDING);
         return reservation;
     }

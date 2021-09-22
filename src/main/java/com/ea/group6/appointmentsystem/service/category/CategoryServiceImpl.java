@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -33,12 +32,12 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Appointment> findAllAppointmentsGivenCategoryId(Long categoryId) {
-        return findById(categoryId).get().getAppointmentList();
+        return categoryRepository.findAllAppointmentsGivenCategoryId(categoryId);
     }
 
     @Override
     public Appointment findSingleAppointmentGivenCategoryId(Long categoryId, Long appointmentId) {
-        return findById(categoryId).get().getAppointmentList()
+        return categoryRepository.findAllAppointmentsGivenCategoryId(categoryId)
                 .stream()
                 .filter(appointment -> appointment.getId() == appointmentId)
                 .findFirst()

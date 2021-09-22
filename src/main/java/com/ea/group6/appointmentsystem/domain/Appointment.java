@@ -32,16 +32,12 @@ public class Appointment {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @OneToMany (mappedBy = "appointment", cascade = CascadeType.ALL)
-    private List<Reservation> reservations;
-
-    public Appointment(LocalDate date, LocalTime time, String location, String duration, Provider provider, Category category, List<Reservation> reservations) {
+    public Appointment(LocalDate date, LocalTime time, String location, String duration, Provider provider, Category category) {
         this.date = date;
         this.time = time;
         this.location = location;
         this.duration = duration;
         this.provider = provider;
         this.category = category;
-        this.reservations = reservations;
     }
 }
