@@ -6,6 +6,7 @@ import com.ea.group6.appointmentsystem.service.category.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,12 +41,13 @@ public class CategoryController {
     }
 
     @PostMapping
-    public void save(@RequestBody Category category){
+    public void save(@Valid @RequestBody Category category){
+
         categoryService.save(category);
     }
 
     @PutMapping("/{id}")
-    public Category update(@PathVariable(name = "id") Long categoryId, @RequestBody Category category) {
+    public Category update(@PathVariable(name = "id") Long categoryId, @Valid @RequestBody Category category) {
         categoryService.findById(categoryId).orElseThrow(RuntimeException::new); //It should throw a custom exception; we need to write custom exception
         return categoryService.update(category);
     }

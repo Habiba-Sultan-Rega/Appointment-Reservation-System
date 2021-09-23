@@ -3,6 +3,7 @@ package com.ea.group6.appointmentsystem.service.appointment;
 import com.ea.group6.appointmentsystem.domain.Appointment;
 import com.ea.group6.appointmentsystem.domain.Category;
 import com.ea.group6.appointmentsystem.repository.AppointmentRepository;
+import com.ea.group6.appointmentsystem.repository.ProviderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +14,14 @@ import java.util.Optional;
 @Service
 @Transactional
 public class AppointmentServiceImpl implements AppointmentService{
+
     AppointmentRepository appointmentRepository;
+
 
     @Autowired
     public AppointmentServiceImpl(AppointmentRepository appointmentRepository){
         this.appointmentRepository = appointmentRepository;
+
     }
 
     @Override
