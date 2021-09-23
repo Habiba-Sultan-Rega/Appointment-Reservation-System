@@ -26,7 +26,6 @@ jobs:
       # uses: shogo82148/actions-setup-mysql@f009c43355912736b6dc8b0dc5aee33051d2f01b
       uses: shogo82148/actions-setup-mysql@v1.3.1
       with: 
-        root-password: ${{ secrets.MYSQL_PASSWORD }}
         # name of a new user
         user: root
         # password for the new user
