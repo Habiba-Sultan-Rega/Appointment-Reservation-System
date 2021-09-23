@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -37,7 +38,7 @@ public class ReservationController {
     }
 
     @PostMapping
-    public void save(@RequestBody ReservationDTO reservationDTO){
+    public void save(@Valid @RequestBody ReservationDTO reservationDTO){
         reservationService.save(makeReservation(reservationDTO));
     }
 
@@ -48,7 +49,7 @@ public class ReservationController {
     }
 
     @PutMapping("/{id}")
-    public Reservation update(@PathVariable(name = "id") Long id, @RequestBody Reservation reservation) {
+    public Reservation update(@PathVariable(name = "id") Long id, @Valid @RequestBody Reservation reservation) {
         reservationService.findById(id).orElseThrow(RuntimeException::new); //It should throw a custom exception; we need to write custom exception
         return reservationService.update(reservation);
     }
