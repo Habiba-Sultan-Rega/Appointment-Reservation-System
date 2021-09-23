@@ -24,7 +24,6 @@ jobs:
         # The port of host
 
         # MYSQL_ROOT_PASSWORD - root superuser password
-        mysql root password: ${{ secrets.mysql_password }}
         mysql password: ${{ secrets.mysql_password }}
         mysql database: appointment_app
         mysql user: root
