@@ -27,7 +27,7 @@ jobs:
       uses: shogo82148/actions-setup-mysql@v1.3.1
       with: 
         # name of a new user
-        user: root
+        user: developer
         # password for the new user
         password: ${{ secrets.MYSQL_PASSWORD }}
     - name: Set up JDK 11
