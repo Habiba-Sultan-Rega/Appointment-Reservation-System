@@ -7,13 +7,14 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    @Query(value = "Select * from User where username = ? LIMIT 1", nativeQuery = true)
+    @Query(value = "Select *, 0 AS clazz_  from User where username = :username LIMIT 1", nativeQuery = true)
     public User findUserByUsername(@Param("username") String username);
 
-    @Query(value = "Select * from User where username = ? and password = ? LIMIT 1", nativeQuery = true)
+    @Query(value = "Select *, 0 AS clazz_ from User where username = :username and password = :password LIMIT 1", nativeQuery = true)
     public User findUserByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
 
     @Query(value = "SELECT distinct r.role_name FROM User u INNER JOIN user_role ur On (u.id = ur.user_id) Inner Join " +

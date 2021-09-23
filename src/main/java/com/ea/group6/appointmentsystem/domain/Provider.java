@@ -3,6 +3,7 @@ package com.ea.group6.appointmentsystem.domain;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,7 +11,8 @@ import javax.persistence.Id;
 @Entity
 @Data
 @NoArgsConstructor
-public class Provider extends Role {
+@DiscriminatorValue("Provider")
+public class Provider extends User {
     @Id
     @GeneratedValue
     private Long id;

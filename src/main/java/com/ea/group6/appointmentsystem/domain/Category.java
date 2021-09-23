@@ -27,12 +27,8 @@ public class Category {
     @Value("30 mins")
     private String duration;
 
-    @OneToMany(mappedBy = "category")
-    private List<Appointment> appointmentList;
-
-    public Category(String title, String duration, List<Appointment> appointmentList) {
+    public Category(String title, String duration) {
         this.title = title;
         this.duration = duration;
-        this.appointmentList = appointmentList;
     }
 }
