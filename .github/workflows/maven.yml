@@ -16,6 +16,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Start MySQL
+      # You may pin to the exact commit or the version.
+      # uses: samin/mysql-action@4dd1210f1d6b9c2468adec44066ef4a97b8f07f3
+      uses: samin/mysql-action@v1.3
+      with:
+        # The port of host
+
+        # MYSQL_ROOT_PASSWORD - root superuser password
+        mysql root password: ${{ secrets.mysql_password }}
+        # MYSQL_DATABASE - name for the default database that is created
+        mysql database: appointment_app
+        # MYSQL_USER - create the specified user with superuser power for created database
+        mysql user: root
+        # MYSQL_PASSWORD - specified superuser password which user is power for created database
+        
     - name: Set up JDK 11
       uses: actions/setup-java@v2
       with:
