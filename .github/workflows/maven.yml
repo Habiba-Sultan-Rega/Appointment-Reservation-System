@@ -24,9 +24,8 @@ jobs:
         # The port of host
 
         # MYSQL_ROOT_PASSWORD - root superuser password
-        mysql password: ${{ secrets.mysql_password }}
+        mysql root password: ${{ secrets.mysql_password }}
         mysql database: appointment_app
-        mysql user: root
         
     - name: Set up JDK 11
       uses: actions/setup-java@v2
