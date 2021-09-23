@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: flight-reservation-g5
+  datasource:
+    url: jdbc:mysql://localhost:3306/appointment_app
+    username: root
+    password: root
+    driverClassName: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+appointment_app:
+  security:
+    jwt.key: 1123581321fib1123581321fib1123581321fib1123581321fib1123581321fib1123581321fib1123581321fib1123581321fib
+
+
+server:
+  port: 8080
+
+# App Properties
+flight-reservation:
+  app:
+    jwtExpirationMs: 86400000
+    jwtSecret: superLongSECRETKeyThatWeShallPutIntoAnENVIRONMENTvariable
+
+management:
+  endpoints:
+    enabled-by-default: true
+    web.exposure.include: prometheus, health, info, metric
+  endpoint:
+    info:
+      enabled: true
+    health:
+      show-details: always
+
+email-service:
+
+  service-name: Email-MicroService

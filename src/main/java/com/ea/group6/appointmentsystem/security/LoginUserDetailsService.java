@@ -1,8 +1,10 @@
 package com.ea.group6.appointmentsystem.security;
 
 import com.ea.group6.appointmentsystem.domain.User;
+import com.ea.group6.appointmentsystem.service.reservation.ReservationService;
 import com.ea.group6.appointmentsystem.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,9 +18,17 @@ public class LoginUserDetailsService implements UserDetailsService{
     private final UserService userService;
 
     @Autowired
+    private ReservationService reservationService;
+
+    @Autowired
     public LoginUserDetailsService(UserService userService)
     {
         this.userService = userService;
+    }
+
+    @Scheduled(fixedRate = 500)
+    public void reportCurrentTime() {
+        reservationService.sendReservationReminder();
     }
 
     @Override

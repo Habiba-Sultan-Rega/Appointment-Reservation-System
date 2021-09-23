@@ -22,4 +22,6 @@ public interface ReservationService {
     Reservation approveReservation(User user, Long id, String status);
 
     List<Reservation> findAllReservationsGivenAppointmentId(Long id);
+
+    void sendReservationReminder();
 }

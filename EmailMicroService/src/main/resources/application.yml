@@ -1,0 +1,41 @@
+server:
+  port: 3000
+spring:
+  application:
+    name: Email-MicroService
+
+  datasource:
+    url: jdbc:mysql://localhost/appointment_app
+    username: root
+    password: Root.123
+    driverClassName: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  mail:
+    host: smtp.mailgun.org
+    port: 587
+    username: postmaster@sandboxc09a4ad78ea747d6b21635e5d4183b4b.mailgun.org
+    password: 85553ead5c5a61f6b3da19fde9968831-9ad3eb61-006901d3
+    properties:
+      mail:
+        smtp:
+          auth: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+          starttls:
+            enable: true
+            required: true
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin
+
