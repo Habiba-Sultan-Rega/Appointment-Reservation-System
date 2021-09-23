@@ -8,7 +8,7 @@ Appointment-Reservation-System is a generic Reservation system.
 
 # General info
 This project is Generic back-end Spring application which helps people to make a reservation of an appointment of any type.
-# Technologies
+# Technologies  
 Project is created with:
 
   * Backend technologies : Springboot
