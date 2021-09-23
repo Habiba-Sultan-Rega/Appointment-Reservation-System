@@ -54,20 +54,20 @@ public class AppointmentControllerTest {
         Reservation res1 = new Reservation(s1,dt,tm,restype1, "to see u",provider1, client1, null);
         Reservation res2 = new Reservation(s2,dt,tm,restype2, "to see u",provider2, client1, null);
 
-        Category category2 = new Category("TM", "30 mins", null);
+        Category category2 = new Category("TM", "30 mins");
 
         List<Reservation> reserveList = new ArrayList<>();
 
         reserveList.add(res1);
         reserveList.add(res2);
-        Appointment appointment1 = new Appointment(dt,tm, "canada", "30 mins", provider1, category2, reserveList );
-        Appointment appointment2 = new Appointment(dt,tm, "canada", "30 mins", provider1, category2, reserveList );
+        Appointment appointment1 = new Appointment(dt,tm, "canada", "30 mins", provider1, category2);
+        Appointment appointment2 = new Appointment(dt,tm, "canada", "30 mins", provider1, category2);
 
         List<Appointment> appoints = new ArrayList<>();
         appoints.add(appointment1);
         appoints.add(appointment2);
 
-        category2.setAppointmentList(appoints);
+        //category2.setAppointmentList(appoints);
 
         when(appointmentService.findAll()).thenReturn(appoints);
 
@@ -95,20 +95,20 @@ public class AppointmentControllerTest {
             Reservation res1 = new Reservation(s1,dt,tm,restype1, "to see u",provider1, client1, null);
             Reservation res2 = new Reservation(s2,dt,tm,restype2, "to see u",provider2, client1, null);
 
-            Category category2 = new Category("TM", "30 mins", null);
+            Category category2 = new Category("TM", "30 mins");
 
             List<Reservation> reserveList = new ArrayList<>();
 
             reserveList.add(res1);
             reserveList.add(res2);
-            Appointment appointment1 = new Appointment(dt,tm, "canada", "30 mins", provider1, category2, reserveList );
-            Appointment appointment2 = new Appointment(dt,tm, "canada", "30 mins", provider1, category2, reserveList );
+            Appointment appointment1 = new Appointment(dt,tm, "canada", "30 mins", provider1, category2 );
+            Appointment appointment2 = new Appointment(dt,tm, "canada", "30 mins", provider1, category2);
 
             List<Appointment> appoints = new ArrayList<>();
             appoints.add(appointment1);
             appoints.add(appointment2);
 
-            category2.setAppointmentList(appoints);
+            //category2.setAppointmentList(appoints);
 
 
             when(appointmentService.findById(1L)).thenReturn(Optional.of(appointment1));
@@ -139,14 +139,14 @@ public class AppointmentControllerTest {
             Reservation res1 = new Reservation(s1,dt,tm,restype1, "to see u",provider1, client1, null);
             Reservation res2 = new Reservation(s2,dt,tm,restype2, "to see u",provider2, client1, null);
 
-            Category category2 = new Category("TM", "30 mins", null);
+            Category category2 = new Category("TM", "30 mins");
 
             List<Reservation> reserveList = new ArrayList<>();
 
             reserveList.add(res1);
             reserveList.add(res2);
             AppointmentDTO appointment1 = new AppointmentDTO(dt,tm, "canada", "30 mins", provider1, category2);
-            Appointment appointment2 = new Appointment(dt,tm, "canada", "30 mins", provider1, category2, reserveList );
+            Appointment appointment2 = new Appointment(dt,tm, "canada", "30 mins", provider1, category2);
 
 
             appointmentController.save(appointment1);
@@ -171,20 +171,20 @@ public class AppointmentControllerTest {
             Reservation res1 = new Reservation(s1,dt,tm,restype1, "to see u",provider1, client1, null);
             Reservation res2 = new Reservation(s2,dt,tm,restype2, "to see u",provider2, client1, null);
 
-            Category category2 = new Category("TM", "30 mins", null);
+            Category category2 = new Category("TM", "30 mins");
 
             List<Reservation> reserveList = new ArrayList<>();
 
             reserveList.add(res1);
             reserveList.add(res2);
-            Appointment appointment1 = new Appointment(dt,tm, "canada", "30 mins", provider1, category2, reserveList );
-            Appointment appointment2 = new Appointment(dt,tm, "canada", "30 mins", provider1, category2, reserveList );
+            Appointment appointment1 = new Appointment(dt,tm, "canada", "30 mins", provider1, category2);
+            Appointment appointment2 = new Appointment(dt,tm, "canada", "30 mins", provider1, category2);
 
             List<Appointment> appoints = new ArrayList<>();
             appoints.add(appointment1);
             appoints.add(appointment2);
 
-            category2.setAppointmentList(appoints);
+            //category2.setAppointmentList(appoints);
             Long ids = appointment1.getId();
 
             Appointment expected = new Appointment();
