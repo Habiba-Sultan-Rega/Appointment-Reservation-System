@@ -16,6 +16,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: setup-docker
+      # You may pin to the exact commit or the version.
+      # uses: docker-practice/actions-setup-docker@51fd5009666ea5e3382fe125abf5d73d31386b59
+      uses: docker-practice/actions-setup-docker@1.0.8
+       # /etc/docker/daemon.json
     - uses: mirromutth/mysql-action@v1.1
       with:
         host port: 3800 # Optional, default value is 3306. The port of host
